@@ -53,9 +53,10 @@
                 "DM Sans",
                 sans-serif;
 
-            background: #fffaf8;
+            /* Slightly deeper overall background */
+            background: #f8eef2;
 
-            color: #4f3944;
+            color: #4a3440;
 
             overflow-x: hidden;
 
@@ -88,8 +89,7 @@
 
             overflow: hidden;
 
-            background:
-                #f8e9ee;
+            background: #f3dfe7;
 
         }
 
@@ -111,9 +111,9 @@
             background:
                 linear-gradient(
                     135deg,
-                    #684354,
-                    #89576c,
-                    #a66a84
+                    #5e394c,
+                    #86526a,
+                    #a96381
                 );
 
             z-index: 2;
@@ -163,7 +163,12 @@
                     90deg,
                     transparent 0px,
                     transparent 28px,
-                    rgba(255,255,255,0.07) 29px,
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.07
+                    ) 29px,
                     transparent 31px
                 );
 
@@ -188,7 +193,12 @@
                 linear-gradient(
                     90deg,
                     transparent,
-                    rgba(255,255,255,0.08),
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.08
+                    ),
                     transparent
                 );
 
@@ -225,7 +235,10 @@
             color: white;
 
             animation:
-                openingAppear 1.5s ease forwards;
+                openingAppear
+                1.5s
+                ease
+                forwards;
 
             transition:
                 opacity 0.55s ease,
@@ -327,10 +340,20 @@
 
             border:
                 1px solid
-                rgba(255,255,255,0.45);
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.45
+                );
 
             background:
-                rgba(255,255,255,0.1);
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.1
+                );
 
             color: white;
 
@@ -340,7 +363,8 @@
 
             cursor: pointer;
 
-            backdrop-filter: blur(10px);
+            backdrop-filter:
+                blur(10px);
 
             transition:
                 transform 0.35s ease,
@@ -356,11 +380,21 @@
                 translateY(-4px);
 
             background:
-                rgba(255,255,255,0.2);
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.2
+                );
 
             box-shadow:
                 0 15px 40px
-                rgba(0,0,0,0.12);
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.12
+                );
 
         }
 
@@ -447,10 +481,10 @@
 
             background:
                 rgba(
-                    190,
-                    117,
-                    145,
-                    0.35
+                    168,
+                    92,
+                    125,
+                    0.4
                 );
 
             pointer-events: none;
@@ -550,17 +584,17 @@
 
                 radial-gradient(
                     circle at 15% 20%,
-                    #fde7ef 0%,
-                    transparent 30%
+                    #f3cbd8 0%,
+                    transparent 32%
                 ),
 
                 radial-gradient(
                     circle at 85% 80%,
-                    #eee3fa 0%,
-                    transparent 30%
+                    #dcd0ee 0%,
+                    transparent 32%
                 ),
 
-                #fffaf8;
+                #f8eef2;
 
         }
 
@@ -580,7 +614,7 @@
 
             text-transform: uppercase;
 
-            color: #aa8191;
+            color: #986579;
 
             margin-bottom: 28px;
 
@@ -604,14 +638,14 @@
 
             font-weight: 500;
 
-            color: #714c5d;
+            color: #603f50;
 
         }
 
 
         .hero h1 span {
 
-            color: #c67898;
+            color: #b65f82;
 
             font-style: italic;
 
@@ -629,7 +663,7 @@
 
             line-height: 1.9;
 
-            color: #75616a;
+            color: #634f59;
 
         }
 
@@ -651,7 +685,7 @@
 
             letter-spacing: 8px;
 
-            color: #82576a;
+            color: #754d62;
 
         }
 
@@ -666,7 +700,7 @@
 
             text-transform: uppercase;
 
-            color: #ae8a98;
+            color: #9a7182;
 
             animation:
                 bounce 2s infinite;
@@ -735,7 +769,7 @@
 
             text-transform: uppercase;
 
-            color: #af8293;
+            color: #9f7183;
 
             margin-bottom: 20px;
 
@@ -757,7 +791,7 @@
 
             line-height: 1;
 
-            color: #704c5d;
+            color: #603f50;
 
             font-weight: 500;
 
@@ -766,7 +800,7 @@
 
         .section-title span {
 
-            color: #c47898;
+            color: #b96183;
 
             font-style: italic;
 
@@ -784,7 +818,7 @@
 
             line-height: 1.9;
 
-            color: #75626a;
+            color: #69545e;
 
         }
 
@@ -806,9 +840,9 @@
             background:
                 rgba(
                     255,
-                    255,
-                    255,
-                    0.72
+                    250,
+                    248,
+                    0.9
                 );
 
             border:
@@ -823,10 +857,10 @@
             box-shadow:
                 0 25px 70px
                 rgba(
-                    115,
-                    74,
-                    94,
-                    0.08
+                    105,
+                    62,
+                    84,
+                    0.12
                 );
 
             backdrop-filter:
@@ -850,14 +884,14 @@
 
             line-height: 1.5;
 
-            color: #755366;
+            color: #694a5a;
 
         }
 
 
         .story-card strong {
 
-            color: #c47798;
+            color: #b96183;
 
             font-style: italic;
 
@@ -872,7 +906,7 @@
         .details {
 
             background:
-                #fdf5f7;
+                #f1dce4;
 
         }
 
@@ -899,9 +933,9 @@
             background:
                 rgba(
                     255,
-                    255,
-                    255,
-                    0.78
+                    250,
+                    250,
+                    0.9
                 );
 
             border-radius: 28px;
@@ -921,7 +955,7 @@
                     120,
                     76,
                     96,
-                    0.07
+                    0.1
                 );
 
             transition:
@@ -955,7 +989,7 @@
 
             text-transform: uppercase;
 
-            color: #b28b9a;
+            color: #a37487;
 
             margin-bottom: 10px;
 
@@ -970,7 +1004,7 @@
 
             font-size: 24px;
 
-            color: #745064;
+            color: #68485a;
 
         }
 
@@ -981,7 +1015,7 @@
 
             font-size: 13px;
 
-            color: #a18490;
+            color: #927381;
 
         }
 
@@ -998,8 +1032,8 @@
             background:
                 linear-gradient(
                     145deg,
-                    #70495c,
-                    #a86785
+                    #633e50,
+                    #955d78
                 );
 
             color: white;
@@ -1091,7 +1125,7 @@
                     255,
                     255,
                     255,
-                    0.08
+                    0.09
                 );
 
             border:
@@ -1132,7 +1166,7 @@
                     255,
                     255,
                     255,
-                    0.78
+                    0.82
                 );
 
             font-size: 15px;
@@ -1187,7 +1221,7 @@
         .rsvp-yes {
 
             background:
-                #bd7292;
+                #b56888;
 
             color: white;
 
@@ -1196,9 +1230,9 @@
             box-shadow:
                 0 12px 30px
                 rgba(
-                    189,
-                    114,
-                    146,
+                    181,
+                    104,
+                    136,
                     0.25
                 );
 
@@ -1210,15 +1244,6 @@
             transform:
                 translateY(-4px);
 
-            box-shadow:
-                0 18px 35px
-                rgba(
-                    189,
-                    114,
-                    146,
-                    0.35
-                );
-
         }
 
 
@@ -1226,11 +1251,11 @@
 
             background: white;
 
-            color: #89596d;
+            color: #82546a;
 
             border:
                 1px solid
-                #ead2dc;
+                #e3c6d2;
 
         }
 
@@ -1273,7 +1298,7 @@
                 55px 20px 75px;
 
             background:
-                #fffaf8;
+                #ead3dd;
 
         }
 
@@ -1286,7 +1311,7 @@
 
             font-size: 25px;
 
-            color: #7b5666;
+            color: #68495a;
 
         }
 
@@ -1299,7 +1324,7 @@
 
             letter-spacing: 3px;
 
-            color: #b28b99;
+            color: #936f7e;
 
         }
 
@@ -1472,21 +1497,15 @@
     >
 
 
-        <!-- Left curtain -->
-
         <div
             class="opening-panel opening-left"
         ></div>
 
 
-        <!-- Right curtain -->
-
         <div
             class="opening-panel opening-right"
         ></div>
 
-
-        <!-- Opening message -->
 
         <div class="opening-content">
 
@@ -1539,9 +1558,7 @@
     <main id="main">
 
 
-        <!-- =================================================
-             HERO
-        ================================================== -->
+        <!-- HERO -->
 
         <section class="hero">
 
@@ -1597,9 +1614,7 @@
 
 
 
-        <!-- =================================================
-             STORY
-        ================================================== -->
+        <!-- STORY -->
 
         <section>
 
@@ -1658,9 +1673,7 @@
 
 
 
-        <!-- =================================================
-             EVENT DETAILS
-        ================================================== -->
+        <!-- EVENT DETAILS -->
 
         <section class="details">
 
@@ -1727,7 +1740,7 @@
                     <div class="detail">
 
                         <div class="detail-icon">
-                            🕖
+                            🕕
                         </div>
 
                         <div class="detail-label">
@@ -1735,7 +1748,7 @@
                         </div>
 
                         <div class="detail-value">
-                            7:00 PM
+                            6:00 PM
                         </div>
 
                         <div class="detail-sub">
@@ -1778,9 +1791,7 @@
 
 
 
-        <!-- =================================================
-             NAME REVEAL
-        ================================================== -->
+        <!-- NAME REVEAL -->
 
         <section class="secret-section">
 
@@ -1851,9 +1862,7 @@
 
 
 
-        <!-- =================================================
-             RSVP
-        ================================================== -->
+        <!-- RSVP -->
 
         <section>
 
@@ -1929,9 +1938,7 @@
 
 
 
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
+    <!-- FOOTER -->
 
     <footer>
 
@@ -1945,7 +1952,7 @@
 
         <div class="footer-date">
 
-            26 · 09 · 2026 · 7 PM ONWARDS
+            26 · 09 · 2026 · 6 PM ONWARDS
 
         </div>
 
@@ -1980,19 +1987,10 @@
                 );
 
 
-            /*
-             * Start curtain animation
-             */
-
             opening.classList.add(
                 "opened"
             );
 
-
-            /*
-             * Reveal invitation
-             * while curtains are opening
-             */
 
             setTimeout(
                 () => {
@@ -2005,11 +2003,6 @@
                 700
             );
 
-
-            /*
-             * Completely remove
-             * opening screen
-             */
 
             setTimeout(
                 () => {
@@ -2025,10 +2018,6 @@
                 1700
             );
 
-
-            /*
-             * Start floating particles
-             */
 
             createParticles();
 
@@ -2095,17 +2084,14 @@
         function createParticles() {
 
 
-            /*
-             * Prevent creating them
-             * more than once
-             */
-
             if (
                 document.querySelector(
                     ".particle"
                 )
             ) {
+
                 return;
+
             }
 
 
@@ -2167,11 +2153,10 @@
 
 
         /* =================================================
-           RSVP — YES
+           RSVP — CURRENT SYSTEM
         ================================================== */
 
         function sayYes() {
-
 
             document.getElementById(
                 "rsvp-message"
@@ -2185,13 +2170,7 @@
         }
 
 
-
-        /* =================================================
-           RSVP — MAYBE
-        ================================================== */
-
         function sayMaybe() {
-
 
             document.getElementById(
                 "rsvp-message"
