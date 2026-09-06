@@ -1,0 +1,2300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>A Little Secret ✨</title>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            font-family:
+                "DM Sans",
+                sans-serif;
+
+            background: #fffaf8;
+
+            color: #4f3944;
+
+            overflow-x: hidden;
+
+        }
+
+
+        button {
+            font-family: inherit;
+        }
+
+
+
+        /* =====================================================
+           CINEMATIC OPENING
+        ===================================================== */
+
+        .opening {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 9999;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            background:
+                #f8e9ee;
+
+        }
+
+
+        /* ---------------------------------------------
+           CURTAIN PANELS
+        --------------------------------------------- */
+
+        .opening-panel {
+
+            position: absolute;
+
+            top: 0;
+
+            bottom: 0;
+
+            width: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #684354,
+                    #89576c,
+                    #a66a84
+                );
+
+            z-index: 2;
+
+            transition:
+                transform 1.6s
+                cubic-bezier(
+                    0.77,
+                    0,
+                    0.175,
+                    1
+                );
+
+        }
+
+
+        .opening-left {
+
+            left: 0;
+
+            transform-origin: left center;
+
+        }
+
+
+        .opening-right {
+
+            right: 0;
+
+            transform-origin: right center;
+
+        }
+
+
+        /* Curtain texture */
+
+        .opening-panel::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0px,
+                    transparent 28px,
+                    rgba(255,255,255,0.07) 29px,
+                    transparent 31px
+                );
+
+        }
+
+
+        /* Curtain glow */
+
+        .opening-panel::after {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            bottom: 0;
+
+            width: 100px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,0.08),
+                    transparent
+                );
+
+            filter: blur(8px);
+
+        }
+
+
+        .opening-left::after {
+            right: 10%;
+        }
+
+
+        .opening-right::after {
+            left: 10%;
+        }
+
+
+
+        /* =====================================================
+           OPENING CONTENT
+        ===================================================== */
+
+        .opening-content {
+
+            position: relative;
+
+            z-index: 5;
+
+            text-align: center;
+
+            padding: 30px;
+
+            color: white;
+
+            animation:
+                openingAppear 1.5s ease forwards;
+
+            transition:
+                opacity 0.55s ease,
+                transform 0.8s ease;
+
+        }
+
+
+        @keyframes openingAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(25px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        .opening-small {
+
+            font-size: 11px;
+
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            color: #f4dce6;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .opening-title {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size:
+                clamp(
+                    42px,
+                    9vw,
+                    82px
+                );
+
+            line-height: 1.05;
+
+            font-weight: 500;
+
+        }
+
+
+        .opening-title em {
+
+            color: #ffd7e5;
+
+        }
+
+
+        .opening-date {
+
+            margin-top: 32px;
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size: 20px;
+
+            letter-spacing: 7px;
+
+            color: #f6e2e9;
+
+        }
+
+
+        .enter-button {
+
+            margin-top: 50px;
+
+            padding:
+                16px 32px;
+
+            border-radius: 100px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.45);
+
+            background:
+                rgba(255,255,255,0.1);
+
+            color: white;
+
+            font-size: 14px;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            backdrop-filter: blur(10px);
+
+            transition:
+                transform 0.35s ease,
+                background 0.35s ease,
+                box-shadow 0.35s ease;
+
+        }
+
+
+        .enter-button:hover {
+
+            transform:
+                translateY(-4px);
+
+            background:
+                rgba(255,255,255,0.2);
+
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,0.12);
+
+        }
+
+
+        .enter-button span {
+
+            margin-left: 10px;
+
+            transition:
+                transform 0.3s ease;
+
+        }
+
+
+        .enter-button:hover span {
+
+            display: inline-block;
+
+            transform:
+                translateX(5px);
+
+        }
+
+
+
+        /* =====================================================
+           CURTAIN OPEN ANIMATION
+        ===================================================== */
+
+        .opening.opened
+        .opening-left {
+
+            transform:
+                translateX(-100%);
+
+        }
+
+
+        .opening.opened
+        .opening-right {
+
+            transform:
+                translateX(100%);
+
+        }
+
+
+        .opening.opened
+        .opening-content {
+
+            opacity: 0;
+
+            transform:
+                scale(0.92);
+
+        }
+
+
+        .opening.hidden {
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            pointer-events: none;
+
+        }
+
+
+
+        /* =====================================================
+           FLOATING PARTICLES
+        ===================================================== */
+
+        .particle {
+
+            position: fixed;
+
+            width: 5px;
+
+            height: 5px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    190,
+                    117,
+                    145,
+                    0.35
+                );
+
+            pointer-events: none;
+
+            z-index: 10;
+
+            animation:
+                particleFloat
+                linear
+                infinite;
+
+        }
+
+
+        @keyframes particleFloat {
+
+            0% {
+
+                transform:
+                    translateY(110vh)
+                    scale(0.5);
+
+                opacity: 0;
+
+            }
+
+            15% {
+
+                opacity: 1;
+
+            }
+
+            85% {
+
+                opacity: 1;
+
+            }
+
+            100% {
+
+                transform:
+                    translateY(-10vh)
+                    scale(1);
+
+                opacity: 0;
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           MAIN CONTENT
+        ===================================================== */
+
+        main {
+
+            opacity: 0;
+
+            transition:
+                opacity 1.4s ease;
+
+        }
+
+
+        main.visible {
+
+            opacity: 1;
+
+        }
+
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding:
+                70px 25px;
+
+            position: relative;
+
+            background:
+
+                radial-gradient(
+                    circle at 15% 20%,
+                    #fde7ef 0%,
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 85% 80%,
+                    #eee3fa 0%,
+                    transparent 30%
+                ),
+
+                #fffaf8;
+
+        }
+
+
+        .hero-content {
+
+            max-width: 900px;
+
+        }
+
+
+        .hero-eyebrow {
+
+            font-size: 11px;
+
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            color: #aa8191;
+
+            margin-bottom: 28px;
+
+        }
+
+
+        .hero h1 {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size:
+                clamp(
+                    55px,
+                    12vw,
+                    120px
+                );
+
+            line-height: 0.95;
+
+            font-weight: 500;
+
+            color: #714c5d;
+
+        }
+
+
+        .hero h1 span {
+
+            color: #c67898;
+
+            font-style: italic;
+
+        }
+
+
+        .hero-text {
+
+            max-width: 600px;
+
+            margin:
+                38px auto 0;
+
+            font-size: 17px;
+
+            line-height: 1.9;
+
+            color: #75616a;
+
+        }
+
+
+        .hero-date {
+
+            margin-top: 48px;
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size:
+                clamp(
+                    25px,
+                    5vw,
+                    38px
+                );
+
+            letter-spacing: 8px;
+
+            color: #82576a;
+
+        }
+
+
+        .scroll-hint {
+
+            margin-top: 55px;
+
+            font-size: 10px;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            color: #ae8a98;
+
+            animation:
+                bounce 2s infinite;
+
+        }
+
+
+        @keyframes bounce {
+
+            0%,100% {
+
+                transform:
+                    translateY(0);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(8px);
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           GENERAL SECTIONS
+        ===================================================== */
+
+        section:not(.hero) {
+
+            min-height: 80vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                100px 22px;
+
+            position: relative;
+
+        }
+
+
+        .container {
+
+            width: 100%;
+
+            max-width: 900px;
+
+            text-align: center;
+
+        }
+
+
+        .eyebrow {
+
+            font-size: 11px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            color: #af8293;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .section-title {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size:
+                clamp(
+                    45px,
+                    9vw,
+                    85px
+                );
+
+            line-height: 1;
+
+            color: #704c5d;
+
+            font-weight: 500;
+
+        }
+
+
+        .section-title span {
+
+            color: #c47898;
+
+            font-style: italic;
+
+        }
+
+
+        .description {
+
+            max-width: 620px;
+
+            margin:
+                30px auto 0;
+
+            font-size: 16px;
+
+            line-height: 1.9;
+
+            color: #75626a;
+
+        }
+
+
+
+        /* =====================================================
+           STORY
+        ===================================================== */
+
+        .story-card {
+
+            margin-top: 55px;
+
+            padding:
+                60px 30px;
+
+            border-radius: 35px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.72
+                );
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.95
+                );
+
+            box-shadow:
+                0 25px 70px
+                rgba(
+                    115,
+                    74,
+                    94,
+                    0.08
+                );
+
+            backdrop-filter:
+                blur(15px);
+
+        }
+
+
+        .story-card p {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size:
+                clamp(
+                    25px,
+                    5vw,
+                    42px
+                );
+
+            line-height: 1.5;
+
+            color: #755366;
+
+        }
+
+
+        .story-card strong {
+
+            color: #c47798;
+
+            font-style: italic;
+
+        }
+
+
+
+        /* =====================================================
+           EVENT DETAILS
+        ===================================================== */
+
+        .details {
+
+            background:
+                #fdf5f7;
+
+        }
+
+
+        .details-grid {
+
+            margin-top: 55px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+        }
+
+
+        .detail {
+
+            padding:
+                38px 20px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.78
+                );
+
+            border-radius: 28px;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.95
+                );
+
+            box-shadow:
+                0 15px 40px
+                rgba(
+                    120,
+                    76,
+                    96,
+                    0.07
+                );
+
+            transition:
+                transform 0.35s ease;
+
+        }
+
+
+        .detail:hover {
+
+            transform:
+                translateY(-7px);
+
+        }
+
+
+        .detail-icon {
+
+            font-size: 30px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .detail-label {
+
+            font-size: 10px;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            color: #b28b9a;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .detail-value {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size: 24px;
+
+            color: #745064;
+
+        }
+
+
+        .detail-sub {
+
+            margin-top: 7px;
+
+            font-size: 13px;
+
+            color: #a18490;
+
+        }
+
+
+
+        /* =====================================================
+           SECRET SECTION
+        ===================================================== */
+
+        .secret-section {
+
+            min-height: 90vh;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #70495c,
+                    #a86785
+                );
+
+            color: white;
+
+        }
+
+
+        .secret-container {
+
+            max-width: 750px;
+
+            text-align: center;
+
+        }
+
+
+        .secret-section .eyebrow {
+
+            color:
+                #f0dce5;
+
+        }
+
+
+        .secret-section
+        .section-title {
+
+            color: white;
+
+        }
+
+
+        .secret-section
+        .section-title span {
+
+            color:
+                #ffd7e5;
+
+        }
+
+
+        .lock-icon {
+
+            font-size: 55px;
+
+            margin-bottom: 25px;
+
+            animation:
+                lockPulse
+                2.5s
+                infinite;
+
+        }
+
+
+        @keyframes lockPulse {
+
+            0%,100% {
+
+                transform:
+                    scale(1);
+
+            }
+
+            50% {
+
+                transform:
+                    scale(1.08);
+
+            }
+
+        }
+
+
+        .secret-box {
+
+            margin:
+                48px auto 0;
+
+            max-width: 480px;
+
+            padding:
+                28px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.08
+                );
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.2
+                );
+
+            backdrop-filter:
+                blur(10px);
+
+        }
+
+
+        .secret-dots {
+
+            font-size: 28px;
+
+            letter-spacing: 12px;
+
+            color:
+                #ffe2eb;
+
+        }
+
+
+        .secret-description {
+
+            margin-top: 25px;
+
+            line-height: 1.9;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.78
+                );
+
+            font-size: 15px;
+
+        }
+
+
+        .secret-description strong {
+
+            color: white;
+
+        }
+
+
+
+        /* =====================================================
+           RSVP
+        ===================================================== */
+
+        .rsvp-buttons {
+
+            margin-top: 45px;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .rsvp {
+
+            padding:
+                16px 28px;
+
+            border-radius: 100px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            transition:
+                all 0.3s ease;
+
+        }
+
+
+        .rsvp-yes {
+
+            background:
+                #bd7292;
+
+            color: white;
+
+            border: none;
+
+            box-shadow:
+                0 12px 30px
+                rgba(
+                    189,
+                    114,
+                    146,
+                    0.25
+                );
+
+        }
+
+
+        .rsvp-yes:hover {
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 18px 35px
+                rgba(
+                    189,
+                    114,
+                    146,
+                    0.35
+                );
+
+        }
+
+
+        .rsvp-maybe {
+
+            background: white;
+
+            color: #89596d;
+
+            border:
+                1px solid
+                #ead2dc;
+
+        }
+
+
+        .rsvp-maybe:hover {
+
+            transform:
+                translateY(-4px);
+
+        }
+
+
+        #rsvp-message {
+
+            min-height: 40px;
+
+            margin-top: 30px;
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size: 22px;
+
+            color: #a85f7e;
+
+        }
+
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+
+            text-align: center;
+
+            padding:
+                55px 20px 75px;
+
+            background:
+                #fffaf8;
+
+        }
+
+
+        .footer-title {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size: 25px;
+
+            color: #7b5666;
+
+        }
+
+
+        .footer-date {
+
+            margin-top: 12px;
+
+            font-size: 11px;
+
+            letter-spacing: 3px;
+
+            color: #b28b99;
+
+        }
+
+
+
+        /* =====================================================
+           SCROLL REVEAL
+        ===================================================== */
+
+        .reveal {
+
+            opacity: 0;
+
+            transform:
+                translateY(35px);
+
+            transition:
+                opacity 1s ease,
+                transform 1s ease;
+
+        }
+
+
+        .reveal.visible {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+
+        }
+
+
+
+        /* =====================================================
+           CONFETTI
+        ===================================================== */
+
+        .confetti {
+
+            position: fixed;
+
+            top: -20px;
+
+            width: 8px;
+
+            height: 14px;
+
+            z-index: 10000;
+
+            pointer-events: none;
+
+            animation:
+                confettiFall
+                linear
+                forwards;
+
+        }
+
+
+        @keyframes confettiFall {
+
+            to {
+
+                transform:
+                    translateY(110vh)
+                    rotate(720deg);
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+
+            .opening-title {
+
+                font-size: 43px;
+
+            }
+
+
+            .opening-date {
+
+                font-size: 16px;
+
+                letter-spacing: 5px;
+
+            }
+
+
+            .opening-small {
+
+                font-size: 9px;
+
+                letter-spacing: 3px;
+
+            }
+
+
+            .details-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .detail {
+
+                padding:
+                    30px 20px;
+
+            }
+
+
+            .story-card {
+
+                padding:
+                    42px 22px;
+
+            }
+
+
+            .rsvp-buttons {
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .rsvp {
+
+                width: 100%;
+
+            }
+
+
+            .hero-date {
+
+                letter-spacing: 5px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+    <!-- =====================================================
+         CINEMATIC OPENING
+    ====================================================== -->
+
+    <div
+        class="opening"
+        id="opening"
+    >
+
+
+        <!-- Left curtain -->
+
+        <div
+            class="opening-panel opening-left"
+        ></div>
+
+
+        <!-- Right curtain -->
+
+        <div
+            class="opening-panel opening-right"
+        ></div>
+
+
+        <!-- Opening message -->
+
+        <div class="opening-content">
+
+
+            <div class="opening-small">
+
+                You are invited to something special
+
+            </div>
+
+
+            <div class="opening-title">
+
+                A little secret<br>
+
+                <em>is waiting...</em>
+
+            </div>
+
+
+            <div class="opening-date">
+
+                26 · 09 · 2026
+
+            </div>
+
+
+            <button
+                class="enter-button"
+                onclick="enterInvitation()"
+            >
+
+                Tap to enter
+
+                <span>→</span>
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MAIN INVITATION
+    ====================================================== -->
+
+    <main id="main">
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero">
+
+            <div
+                class="hero-content reveal"
+            >
+
+
+                <div class="hero-eyebrow">
+
+                    CHAPTER ONE
+
+                </div>
+
+
+                <h1>
+
+                    One whole year.<br>
+
+                    <span>
+                        One beautiful beginning.
+                    </span>
+
+                </h1>
+
+
+                <p class="hero-text">
+
+                    365 days of tiny moments,
+                    endless smiles and memories
+                    that became a beautiful story.
+
+                </p>
+
+
+                <div class="hero-date">
+
+                    26 · 09 · 2026
+
+                </div>
+
+
+                <div class="scroll-hint">
+
+                    Scroll to discover ↓
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             STORY
+        ================================================== -->
+
+        <section>
+
+
+            <div class="container reveal">
+
+
+                <div class="eyebrow">
+
+                    Once upon a time...
+
+                </div>
+
+
+                <h2 class="section-title">
+
+                    The first<br>
+
+                    <span>
+                        chapter.
+                    </span>
+
+                </h2>
+
+
+                <p class="description">
+
+                    A little girl came into the world
+                    and made everything a little brighter.
+
+                </p>
+
+
+                <div class="story-card">
+
+                    <p>
+
+                        And now, somehow...
+
+                        <br><br>
+
+                        <strong>
+                            She's turning ONE.
+                        </strong>
+
+                        🎂
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             EVENT DETAILS
+        ================================================== -->
+
+        <section class="details">
+
+
+            <div class="container reveal">
+
+
+                <div class="eyebrow">
+
+                    Save the evening
+
+                </div>
+
+
+                <h2 class="section-title">
+
+                    Let's<br>
+
+                    <span>
+                        celebrate.
+                    </span>
+
+                </h2>
+
+
+                <p class="description">
+
+                    Because the very first birthday
+                    deserves something unforgettable.
+
+                </p>
+
+
+
+                <div class="details-grid">
+
+
+                    <!-- DATE -->
+
+                    <div class="detail">
+
+                        <div class="detail-icon">
+                            📅
+                        </div>
+
+                        <div class="detail-label">
+                            Date
+                        </div>
+
+                        <div class="detail-value">
+                            26 September
+                        </div>
+
+                        <div class="detail-sub">
+                            2026
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- TIME -->
+
+                    <div class="detail">
+
+                        <div class="detail-icon">
+                            🕖
+                        </div>
+
+                        <div class="detail-label">
+                            Time
+                        </div>
+
+                        <div class="detail-value">
+                            7:00 PM
+                        </div>
+
+                        <div class="detail-sub">
+                            onwards
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- VENUE -->
+
+                    <div class="detail">
+
+                        <div class="detail-icon">
+                            🔐
+                        </div>
+
+                        <div class="detail-label">
+                            Venue
+                        </div>
+
+                        <div class="detail-value">
+                            Secret
+                        </div>
+
+                        <div class="detail-sub">
+                            To be revealed
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             NAME REVEAL
+        ================================================== -->
+
+        <section class="secret-section">
+
+
+            <div
+                class="secret-container reveal"
+            >
+
+
+                <div class="lock-icon">
+
+                    🔐
+
+                </div>
+
+
+                <div class="eyebrow">
+
+                    There's another secret
+
+                </div>
+
+
+                <h2 class="section-title">
+
+                    Her name<br>
+
+                    <span>
+                        is waiting.
+                    </span>
+
+                </h2>
+
+
+
+                <div class="secret-box">
+
+
+                    <div class="secret-dots">
+
+                        • • • • •
+
+                    </div>
+
+
+                    <p class="secret-description">
+
+                        Some surprises are better
+                        when they're revealed in person.
+
+                        <br><br>
+
+                        Her name will be revealed
+
+                        <strong>
+                            at the celebration.
+                        </strong>
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RSVP
+        ================================================== -->
+
+        <section>
+
+
+            <div class="container reveal">
+
+
+                <div class="eyebrow">
+
+                    One tiny question
+
+                </div>
+
+
+                <h2 class="section-title">
+
+                    Will you<br>
+
+                    <span>
+                        join us?
+                    </span>
+
+                </h2>
+
+
+                <p class="description">
+
+                    We'd love to have you there
+                    for the beginning of her
+                    second chapter.
+
+                </p>
+
+
+
+                <div class="rsvp-buttons">
+
+
+                    <button
+                        class="rsvp rsvp-yes"
+                        onclick="sayYes()"
+                    >
+
+                        Yes, I'll be there 💕
+
+                    </button>
+
+
+                    <button
+                        class="rsvp rsvp-maybe"
+                        onclick="sayMaybe()"
+                    >
+
+                        I'll try my best ✨
+
+                    </button>
+
+
+                </div>
+
+
+                <div
+                    id="rsvp-message"
+                ></div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+
+        <div class="footer-title">
+
+            Until then... keep the secret. 🤫
+
+        </div>
+
+
+        <div class="footer-date">
+
+            26 · 09 · 2026 · 7 PM ONWARDS
+
+        </div>
+
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+
+        /* =================================================
+           ENTER INVITATION
+        ================================================== */
+
+        function enterInvitation() {
+
+
+            const opening =
+                document.getElementById(
+                    "opening"
+                );
+
+
+            const main =
+                document.getElementById(
+                    "main"
+                );
+
+
+            /*
+             * Start curtain animation
+             */
+
+            opening.classList.add(
+                "opened"
+            );
+
+
+            /*
+             * Reveal invitation
+             * while curtains are opening
+             */
+
+            setTimeout(
+                () => {
+
+                    main.classList.add(
+                        "visible"
+                    );
+
+                },
+                700
+            );
+
+
+            /*
+             * Completely remove
+             * opening screen
+             */
+
+            setTimeout(
+                () => {
+
+                    opening.classList.add(
+                        "hidden"
+                    );
+
+                    document.body.style.overflow =
+                        "auto";
+
+                },
+                1700
+            );
+
+
+            /*
+             * Start floating particles
+             */
+
+            createParticles();
+
+        }
+
+
+
+        /* =================================================
+           SCROLL REVEAL
+        ================================================== */
+
+        const revealElements =
+            document.querySelectorAll(
+                ".reveal"
+            );
+
+
+        const observer =
+            new IntersectionObserver(
+
+                entries => {
+
+                    entries.forEach(
+                        entry => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    "visible"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+
+                {
+                    threshold: 0.15
+                }
+
+            );
+
+
+        revealElements.forEach(
+            element => {
+
+                observer.observe(
+                    element
+                );
+
+            }
+        );
+
+
+
+        /* =================================================
+           FLOATING PARTICLES
+        ================================================== */
+
+        function createParticles() {
+
+
+            /*
+             * Prevent creating them
+             * more than once
+             */
+
+            if (
+                document.querySelector(
+                    ".particle"
+                )
+            ) {
+                return;
+            }
+
+
+            for (
+                let i = 0;
+                i < 28;
+                i++
+            ) {
+
+
+                const particle =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                particle.classList.add(
+                    "particle"
+                );
+
+
+                particle.style.left =
+                    Math.random() * 100
+                    + "vw";
+
+
+                particle.style.animationDuration =
+                    8 +
+                    Math.random() * 12
+                    + "s";
+
+
+                particle.style.animationDelay =
+                    Math.random() * 8
+                    + "s";
+
+
+                const size =
+                    3 +
+                    Math.random() * 4;
+
+
+                particle.style.width =
+                    size + "px";
+
+
+                particle.style.height =
+                    size + "px";
+
+
+                document.body.appendChild(
+                    particle
+                );
+
+            }
+
+        }
+
+
+
+        /* =================================================
+           RSVP — YES
+        ================================================== */
+
+        function sayYes() {
+
+
+            document.getElementById(
+                "rsvp-message"
+            ).innerHTML =
+
+                "Yay! We can't wait to see you. 🥹💕";
+
+
+            createConfetti();
+
+        }
+
+
+
+        /* =================================================
+           RSVP — MAYBE
+        ================================================== */
+
+        function sayMaybe() {
+
+
+            document.getElementById(
+                "rsvp-message"
+            ).innerHTML =
+
+                "We'll keep a little cake waiting for you. 🎂✨";
+
+        }
+
+
+
+        /* =================================================
+           CONFETTI
+        ================================================== */
+
+        function createConfetti() {
+
+
+            const colors = [
+
+                "#d786a8",
+
+                "#efbfd1",
+
+                "#d7c5ed",
+
+                "#f1d49b",
+
+                "#ffffff"
+
+            ];
+
+
+            for (
+                let i = 0;
+                i < 110;
+                i++
+            ) {
+
+
+                const piece =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                piece.classList.add(
+                    "confetti"
+                );
+
+
+                piece.style.left =
+                    Math.random() * 100
+                    + "vw";
+
+
+                piece.style.background =
+                    colors[
+                        Math.floor(
+                            Math.random() *
+                            colors.length
+                        )
+                    ];
+
+
+                piece.style.animationDuration =
+                    2 +
+                    Math.random() * 3
+                    + "s";
+
+
+                piece.style.animationDelay =
+                    Math.random() * 0.8
+                    + "s";
+
+
+                piece.style.transform =
+                    `rotate(
+                        ${Math.random() * 360}deg
+                    )`;
+
+
+                document.body.appendChild(
+                    piece
+                );
+
+
+                setTimeout(
+                    () => {
+
+                        piece.remove();
+
+                    },
+                    5500
+                );
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
