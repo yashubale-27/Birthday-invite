@@ -2153,32 +2153,73 @@
 
 
         /* =================================================
-           RSVP — CURRENT SYSTEM
-        ================================================== */
+           RSVP — GOOGLE SHEETS CONNECTION
+        ================================================= */
 
-        function sayYes() {
-
-            document.getElementById(
-                "rsvp-message"
-            ).innerHTML =
-
-                "Yay! We can't wait to see you. 🥹💕";
+    const RSVP_URL =
+        "https://script.google.com/macros/s/AKfycbwjHnGKCJMhuRjC4JTSRCQS4hTDYAYJvtg8qEqMTYzbl55oiGBfpxJdk7YvLOQqRHVY/exec";
 
 
-            createConfetti();
+    function sendRSVP(response) {
 
-        }
+        const data = new URLSearchParams();
+
+        data.append("response", response);
 
 
-        function sayMaybe() {
+        fetch(RSVP_URL, {
 
-            document.getElementById(
-                "rsvp-message"
-            ).innerHTML =
+            method: "POST",
 
-                "We'll keep a little cake waiting for you. 🎂✨";
+            mode: "no-cors",
 
-        }
+            body: data
+
+        }).catch(error => {
+
+            console.log(
+                "RSVP connection error:",
+                error
+            );
+
+        });
+
+    }
+
+
+    /* YES */
+
+    function sayYes() {
+
+        document.getElementById(
+            "rsvp-message"
+        ).innerHTML =
+
+            "Yay! We can't wait to see you. 🥹💕";
+
+
+        sendRSVP("Yes");
+
+
+        createConfetti();
+
+    }
+
+
+    /* MAYBE */
+
+    function sayMaybe() {
+
+        document.getElementById(
+            "rsvp-message"
+        ).innerHTML =
+
+            "We'll keep a little cake waiting for you. 🎂✨";
+
+
+        sendRSVP("Maybe");
+
+    }
 
 
 
