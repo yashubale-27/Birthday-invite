@@ -1,1195 +1,535 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>A Little Secret ✨</title>
-
-
-    <!-- Google Fonts -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
-
+    <title>Chapter One — A Little Secret</title>
 
     <style>
-
-        /* =====================================================
-           RESET
-        ===================================================== */
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-
         html {
             scroll-behavior: smooth;
         }
 
-
         body {
-
-            font-family:
-                "DM Sans",
-                sans-serif;
-
-            /* Slightly deeper overall background */
+            font-family: Georgia, "Times New Roman", serif;
             background: #f8eef2;
-
-            color: #4a3440;
-
+            color: #4e3944;
             overflow-x: hidden;
-
         }
 
-
-        button {
-            font-family: inherit;
-        }
-
-
-
-        /* =====================================================
-           CINEMATIC OPENING
-        ===================================================== */
+        /* =========================
+           OPENING SCREEN
+        ========================= */
 
         .opening {
-
             position: fixed;
-
             inset: 0;
-
             z-index: 9999;
-
             display: flex;
-
-            align-items: center;
-
             justify-content: center;
+            align-items: center;
+            text-align: center;
 
-            overflow: hidden;
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(255,255,255,0.12),
+                    transparent 45%
+                ),
+                linear-gradient(
+                    135deg,
+                    #4a293b,
+                    #713f56,
+                    #432838
+                );
 
-            background: #f3dfe7;
-
+            transition:
+                opacity 1.2s ease,
+                visibility 1.2s ease;
         }
 
+        .opening.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
 
-        /* ---------------------------------------------
-           CURTAIN PANELS
-        --------------------------------------------- */
+        .opening-content {
+            position: relative;
+            z-index: 3;
+            padding: 30px;
+            animation: fadeUp 1.5s ease;
+        }
 
-        .opening-panel {
+        .opening-small {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 25px;
+        }
 
+        .opening-title {
+            font-size: clamp(32px, 8vw, 65px);
+            font-weight: normal;
+            color: #fff8fa;
+            line-height: 1.15;
+            margin-bottom: 22px;
+        }
+
+        .opening-date {
+            font-size: 14px;
+            letter-spacing: 5px;
+            color: #ead0db;
+            margin-bottom: 40px;
+        }
+
+        .enter-btn {
+            border: 1px solid rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.08);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 100px;
+            font-family: inherit;
+            font-size: 12px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .enter-btn:hover {
+            background: rgba(255,255,255,0.18);
+            transform: translateY(-3px);
+        }
+
+        /* Curtain */
+
+        .curtain-left,
+        .curtain-right {
             position: absolute;
-
             top: 0;
-
-            bottom: 0;
-
             width: 50%;
+            height: 100%;
 
             background:
                 linear-gradient(
-                    135deg,
-                    #5e394c,
-                    #86526a,
-                    #a96381
+                    90deg,
+                    rgba(25,10,18,0.55),
+                    rgba(100,50,70,0.15),
+                    rgba(25,10,18,0.55)
                 );
 
             z-index: 2;
 
             transition:
-                transform 1.6s
-                cubic-bezier(
-                    0.77,
-                    0,
-                    0.175,
-                    1
-                );
-
+                transform 1.5s cubic-bezier(.77,0,.18,1);
         }
 
-
-        .opening-left {
-
+        .curtain-left {
             left: 0;
-
-            transform-origin: left center;
-
         }
 
-
-        .opening-right {
-
+        .curtain-right {
             right: 0;
-
-            transform-origin: right center;
-
         }
 
-
-        /* Curtain texture */
-
-        .opening-panel::before {
-
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-                repeating-linear-gradient(
-                    90deg,
-                    transparent 0px,
-                    transparent 28px,
-                    rgba(
-                        255,
-                        255,
-                        255,
-                        0.07
-                    ) 29px,
-                    transparent 31px
-                );
-
+        .opening.hide .curtain-left {
+            transform: translateX(-100%);
         }
 
-
-        /* Curtain glow */
-
-        .opening-panel::after {
-
-            content: "";
-
-            position: absolute;
-
-            top: 0;
-
-            bottom: 0;
-
-            width: 100px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(
-                        255,
-                        255,
-                        255,
-                        0.08
-                    ),
-                    transparent
-                );
-
-            filter: blur(8px);
-
+        .opening.hide .curtain-right {
+            transform: translateX(100%);
         }
 
+        /* =========================
+           GENERAL
+        ========================= */
 
-        .opening-left::after {
-            right: 10%;
+        section {
+            padding: 90px 20px;
         }
 
-
-        .opening-right::after {
-            left: 10%;
+        .container {
+            width: min(100%, 950px);
+            margin: auto;
         }
 
-
-
-        /* =====================================================
-           OPENING CONTENT
-        ===================================================== */
-
-        .opening-content {
-
-            position: relative;
-
-            z-index: 5;
-
+        .eyebrow {
             text-align: center;
-
-            padding: 30px;
-
-            color: white;
-
-            animation:
-                openingAppear
-                1.5s
-                ease
-                forwards;
-
-            transition:
-                opacity 0.55s ease,
-                transform 0.8s ease;
-
-        }
-
-
-        @keyframes openingAppear {
-
-            from {
-
-                opacity: 0;
-
-                transform:
-                    translateY(25px);
-
-            }
-
-            to {
-
-                opacity: 1;
-
-                transform:
-                    translateY(0);
-
-            }
-
-        }
-
-
-        .opening-small {
-
-            font-size: 11px;
-
-            letter-spacing: 5px;
-
+            font-size: 10px;
+            letter-spacing: 4px;
             text-transform: uppercase;
-
-            color: #f4dce6;
-
-            margin-bottom: 30px;
-
+            color: #a26d82;
+            margin-bottom: 18px;
         }
 
-
-        .opening-title {
-
-            font-family:
-                "Playfair Display",
-                serif;
-
-            font-size:
-                clamp(
-                    42px,
-                    9vw,
-                    82px
-                );
-
-            line-height: 1.05;
-
-            font-weight: 500;
-
+        .section-title {
+            text-align: center;
+            font-size: clamp(30px, 6vw, 48px);
+            font-weight: normal;
+            color: #624352;
+            margin-bottom: 25px;
         }
 
-
-        .opening-title em {
-
-            color: #ffd7e5;
-
+        .divider {
+            width: 55px;
+            height: 1px;
+            background: #c69aaa;
+            margin: 25px auto;
         }
 
-
-        .opening-date {
-
-            margin-top: 32px;
-
-            font-family:
-                "Playfair Display",
-                serif;
-
-            font-size: 20px;
-
-            letter-spacing: 7px;
-
-            color: #f6e2e9;
-
-        }
-
-
-        .enter-button {
-
-            margin-top: 50px;
-
-            padding:
-                16px 32px;
-
-            border-radius: 100px;
-
-            border:
-                1px solid
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.45
-                );
-
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.1
-                );
-
-            color: white;
-
-            font-size: 14px;
-
-            letter-spacing: 2px;
-
-            cursor: pointer;
-
-            backdrop-filter:
-                blur(10px);
-
-            transition:
-                transform 0.35s ease,
-                background 0.35s ease,
-                box-shadow 0.35s ease;
-
-        }
-
-
-        .enter-button:hover {
-
-            transform:
-                translateY(-4px);
-
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.2
-                );
-
-            box-shadow:
-                0 15px 40px
-                rgba(
-                    0,
-                    0,
-                    0,
-                    0.12
-                );
-
-        }
-
-
-        .enter-button span {
-
-            margin-left: 10px;
-
-            transition:
-                transform 0.3s ease;
-
-        }
-
-
-        .enter-button:hover span {
-
-            display: inline-block;
-
-            transform:
-                translateX(5px);
-
-        }
-
-
-
-        /* =====================================================
-           CURTAIN OPEN ANIMATION
-        ===================================================== */
-
-        .opening.opened
-        .opening-left {
-
-            transform:
-                translateX(-100%);
-
-        }
-
-
-        .opening.opened
-        .opening-right {
-
-            transform:
-                translateX(100%);
-
-        }
-
-
-        .opening.opened
-        .opening-content {
-
-            opacity: 0;
-
-            transform:
-                scale(0.92);
-
-        }
-
-
-        .opening.hidden {
-
-            opacity: 0;
-
-            visibility: hidden;
-
-            pointer-events: none;
-
-        }
-
-
-
-        /* =====================================================
-           FLOATING PARTICLES
-        ===================================================== */
-
-        .particle {
-
-            position: fixed;
-
-            width: 5px;
-
-            height: 5px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(
-                    168,
-                    92,
-                    125,
-                    0.4
-                );
-
-            pointer-events: none;
-
-            z-index: 10;
-
-            animation:
-                particleFloat
-                linear
-                infinite;
-
-        }
-
-
-        @keyframes particleFloat {
-
-            0% {
-
-                transform:
-                    translateY(110vh)
-                    scale(0.5);
-
-                opacity: 0;
-
-            }
-
-            15% {
-
-                opacity: 1;
-
-            }
-
-            85% {
-
-                opacity: 1;
-
-            }
-
-            100% {
-
-                transform:
-                    translateY(-10vh)
-                    scale(1);
-
-                opacity: 0;
-
-            }
-
-        }
-
-
-
-        /* =====================================================
-           MAIN CONTENT
-        ===================================================== */
-
-        main {
-
-            opacity: 0;
-
-            transition:
-                opacity 1.4s ease;
-
-        }
-
-
-        main.visible {
-
-            opacity: 1;
-
-        }
-
-
-
-        /* =====================================================
+        /* =========================
            HERO
-        ===================================================== */
+        ========================= */
 
         .hero {
-
             min-height: 100vh;
 
             display: flex;
-
             align-items: center;
-
             justify-content: center;
 
             text-align: center;
 
-            padding:
-                70px 25px;
-
             position: relative;
+            overflow: hidden;
 
             background:
-
                 radial-gradient(
-                    circle at 15% 20%,
-                    #f3cbd8 0%,
-                    transparent 32%
+                    circle at 20% 30%,
+                    rgba(255,255,255,0.5),
+                    transparent 30%
                 ),
-
                 radial-gradient(
-                    circle at 85% 80%,
-                    #dcd0ee 0%,
-                    transparent 32%
+                    circle at 80% 70%,
+                    rgba(255,255,255,0.35),
+                    transparent 30%
                 ),
-
-                #f8eef2;
-
-        }
-
-
-        .hero-content {
-
-            max-width: 900px;
-
-        }
-
-
-        .hero-eyebrow {
-
-            font-size: 11px;
-
-            letter-spacing: 5px;
-
-            text-transform: uppercase;
-
-            color: #986579;
-
-            margin-bottom: 28px;
-
-        }
-
-
-        .hero h1 {
-
-            font-family:
-                "Playfair Display",
-                serif;
-
-            font-size:
-                clamp(
-                    55px,
-                    12vw,
-                    120px
+                linear-gradient(
+                    135deg,
+                    #f3cbd8,
+                    #dcd0ee
                 );
-
-            line-height: 0.95;
-
-            font-weight: 500;
-
-            color: #603f50;
-
         }
 
+        .hero::before {
+            content: "✦";
 
-        .hero h1 span {
+            position: absolute;
+            top: 15%;
+            left: 12%;
 
-            color: #b65f82;
+            font-size: 25px;
 
-            font-style: italic;
-
-        }
-
-
-        .hero-text {
-
-            max-width: 600px;
-
-            margin:
-                38px auto 0;
-
-            font-size: 17px;
-
-            line-height: 1.9;
-
-            color: #634f59;
-
-        }
-
-
-        .hero-date {
-
-            margin-top: 48px;
-
-            font-family:
-                "Playfair Display",
-                serif;
-
-            font-size:
-                clamp(
-                    25px,
-                    5vw,
-                    38px
-                );
-
-            letter-spacing: 8px;
-
-            color: #754d62;
-
-        }
-
-
-        .scroll-hint {
-
-            margin-top: 55px;
-
-            font-size: 10px;
-
-            letter-spacing: 3px;
-
-            text-transform: uppercase;
-
-            color: #9a7182;
+            color: rgba(255,255,255,0.7);
 
             animation:
-                bounce 2s infinite;
-
+                float 4s ease-in-out infinite;
         }
 
-
-        @keyframes bounce {
-
-            0%,100% {
-
-                transform:
-                    translateY(0);
-
-            }
-
-            50% {
-
-                transform:
-                    translateY(8px);
-
-            }
-
-        }
-
-
-
-        /* =====================================================
-           GENERAL SECTIONS
-        ===================================================== */
-
-        section:not(.hero) {
-
-            min-height: 80vh;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            padding:
-                100px 22px;
-
-            position: relative;
-
-        }
-
-
-        .container {
-
-            width: 100%;
-
-            max-width: 900px;
-
-            text-align: center;
-
-        }
-
-
-        .eyebrow {
-
-            font-size: 11px;
-
-            letter-spacing: 4px;
-
-            text-transform: uppercase;
-
-            color: #9f7183;
-
-            margin-bottom: 20px;
-
-        }
-
-
-        .section-title {
-
-            font-family:
-                "Playfair Display",
-                serif;
-
-            font-size:
-                clamp(
-                    45px,
-                    9vw,
-                    85px
-                );
-
-            line-height: 1;
-
-            color: #603f50;
-
-            font-weight: 500;
-
-        }
-
-
-        .section-title span {
-
-            color: #b96183;
-
-            font-style: italic;
-
-        }
-
-
-        .description {
-
-            max-width: 620px;
-
-            margin:
-                30px auto 0;
-
-            font-size: 16px;
-
-            line-height: 1.9;
-
-            color: #69545e;
-
-        }
-
-
-
-        /* =====================================================
-           STORY
-        ===================================================== */
-
-        .story-card {
-
-            margin-top: 55px;
-
-            padding:
-                60px 30px;
-
-            border-radius: 35px;
-
-            background:
-                rgba(
-                    255,
-                    250,
-                    248,
-                    0.9
-                );
-
-            border:
-                1px solid
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.95
-                );
-
-            box-shadow:
-                0 25px 70px
-                rgba(
-                    105,
-                    62,
-                    84,
-                    0.12
-                );
-
-            backdrop-filter:
-                blur(15px);
-
-        }
-
-
-        .story-card p {
-
-            font-family:
-                "Playfair Display",
-                serif;
-
-            font-size:
-                clamp(
-                    25px,
-                    5vw,
-                    42px
-                );
-
-            line-height: 1.5;
-
-            color: #694a5a;
-
-        }
-
-
-        .story-card strong {
-
-            color: #b96183;
-
-            font-style: italic;
-
-        }
-
-
-
-        /* =====================================================
-           EVENT DETAILS
-        ===================================================== */
-
-        .details {
-
-            background:
-                #f1dce4;
-
-        }
-
-
-        .details-grid {
-
-            margin-top: 55px;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 20px;
-
-        }
-
-
-        .detail {
-
-            padding:
-                38px 20px;
-
-            background:
-                rgba(
-                    255,
-                    250,
-                    250,
-                    0.9
-                );
-
-            border-radius: 28px;
-
-            border:
-                1px solid
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.95
-                );
-
-            box-shadow:
-                0 15px 40px
-                rgba(
-                    120,
-                    76,
-                    96,
-                    0.1
-                );
-
-            transition:
-                transform 0.35s ease;
-
-        }
-
-
-        .detail:hover {
-
-            transform:
-                translateY(-7px);
-
-        }
-
-
-        .detail-icon {
+        .hero::after {
+            content: "✧";
+
+            position: absolute;
+            bottom: 15%;
+            right: 12%;
 
             font-size: 30px;
 
-            margin-bottom: 18px;
+            color: rgba(255,255,255,0.7);
 
+            animation:
+                float 5s ease-in-out infinite reverse;
         }
 
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 750px;
+        }
+
+        .chapter {
+            font-size: 12px;
+            letter-spacing: 7px;
+            color: #805268;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 11vw, 95px);
+            font-weight: normal;
+            line-height: 0.95;
+            color: #553744;
+            margin-bottom: 28px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 4vw, 25px);
+            font-style: italic;
+            color: #795566;
+            line-height: 1.5;
+        }
+
+        .hero-date {
+            margin-top: 35px;
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: #8c6474;
+        }
+
+        /* =========================
+           STORY
+        ========================= */
+
+        .story {
+            background: #fff9fb;
+        }
+
+        .story-text {
+            max-width: 650px;
+            margin: auto;
+
+            text-align: center;
+
+            font-size: 17px;
+            line-height: 2;
+
+            color: #725866;
+        }
+
+        .story-text strong {
+            color: #9b5e79;
+            font-weight: normal;
+        }
+
+        /* =========================
+           EVENT DETAILS
+        ========================= */
+
+        .details {
+            background: #f1dce4;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-top: 45px;
+        }
+
+        .detail {
+            background: rgba(255,255,255,0.6);
+
+            padding: 35px 20px;
+
+            text-align: center;
+
+            border:
+                1px solid
+                rgba(140,90,110,0.12);
+
+            transition:
+                transform 0.3s ease;
+        }
+
+        .detail:hover {
+            transform: translateY(-5px);
+        }
+
+        .detail-icon {
+            font-size: 27px;
+            margin-bottom: 18px;
+        }
 
         .detail-label {
-
             font-size: 10px;
-
             letter-spacing: 3px;
-
             text-transform: uppercase;
-
-            color: #a37487;
-
-            margin-bottom: 10px;
-
+            color: #a16f82;
+            margin-bottom: 13px;
         }
-
 
         .detail-value {
-
-            font-family:
-                "Playfair Display",
-                serif;
-
-            font-size: 24px;
-
-            color: #68485a;
-
+            font-size: 19px;
+            color: #634452;
+            line-height: 1.5;
         }
-
 
         .detail-sub {
-
             margin-top: 7px;
-
-            font-size: 13px;
-
-            color: #927381;
-
+            font-size: 12px;
+            color: #9a7483;
+            line-height: 1.5;
         }
 
+        /* =========================
+           VENUE
+        ========================= */
 
+        .venue-link {
+            color: #68485a;
+            text-decoration: none;
 
-        /* =====================================================
-           SECRET SECTION
-        ===================================================== */
+            transition:
+                color 0.3s ease;
+        }
 
-        .secret-section {
+        .venue-link:hover {
+            color: #b96183;
+        }
 
-            min-height: 90vh;
+        .venue-address {
+            margin-top: 14px;
 
+            font-size: 12px;
+            line-height: 1.7;
+
+            color: #927381;
+        }
+
+        .venue-map {
+            margin-top: 18px;
+        }
+
+        .venue-map a {
+            display: inline-block;
+
+            padding: 9px 17px;
+
+            border-radius: 100px;
+
+            background: #f1dce4;
+            color: #805268;
+
+            text-decoration: none;
+
+            font-size: 11px;
+            letter-spacing: 0.5px;
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease;
+        }
+
+        .venue-map a:hover {
+            transform: translateY(-2px);
+            background: #e7c7d4;
+        }
+
+        /* =========================
+           SECRET
+        ========================= */
+
+        .secret {
             background:
                 linear-gradient(
-                    145deg,
+                    135deg,
                     #633e50,
                     #955d78
                 );
 
             color: white;
 
-        }
-
-
-        .secret-container {
-
-            max-width: 750px;
-
             text-align: center;
 
+            position: relative;
+            overflow: hidden;
         }
 
+        .secret::before {
+            content: "✦";
 
-        .secret-section .eyebrow {
+            position: absolute;
 
-            color:
-                #f0dce5;
+            top: 20%;
+            left: 10%;
 
+            color: rgba(255,255,255,0.25);
+
+            font-size: 35px;
         }
 
+        .secret::after {
+            content: "✧";
 
-        .secret-section
-        .section-title {
+            position: absolute;
 
-            color: white;
+            bottom: 15%;
+            right: 10%;
 
+            color: rgba(255,255,255,0.25);
+
+            font-size: 40px;
         }
 
-
-        .secret-section
-        .section-title span {
-
-            color:
-                #ffd7e5;
-
+        .secret .eyebrow {
+            color: #e8cbd6;
         }
 
-
-        .lock-icon {
-
-            font-size: 55px;
-
-            margin-bottom: 25px;
-
-            animation:
-                lockPulse
-                2.5s
-                infinite;
-
+        .secret .section-title {
+            color: #fff8fb;
         }
 
+        .secret-text {
+            max-width: 600px;
 
-        @keyframes lockPulse {
+            margin: auto;
 
-            0%,100% {
+            font-size: 17px;
+            line-height: 1.9;
 
-                transform:
-                    scale(1);
-
-            }
-
-            50% {
-
-                transform:
-                    scale(1.08);
-
-            }
-
+            color: #f2dfe6;
         }
-
 
         .secret-box {
+            margin: 40px auto 0;
 
-            margin:
-                48px auto 0;
+            width: min(100%, 500px);
 
-            max-width: 480px;
-
-            padding:
-                28px;
-
-            border-radius: 22px;
-
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.09
-                );
+            padding: 28px;
 
             border:
                 1px solid
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.2
-                );
+                rgba(255,255,255,0.25);
 
-            backdrop-filter:
-                blur(10px);
+            background:
+                rgba(255,255,255,0.07);
 
+            backdrop-filter: blur(8px);
+
+            font-size: 20px;
+
+            font-style: italic;
+
+            letter-spacing: 1px;
         }
 
-
-        .secret-dots {
-
-            font-size: 28px;
-
-            letter-spacing: 12px;
-
-            color:
-                #ffe2eb;
-
-        }
-
-
-        .secret-description {
-
-            margin-top: 25px;
-
-            line-height: 1.9;
-
-            color:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.82
-                );
-
-            font-size: 15px;
-
-        }
-
-
-        .secret-description strong {
-
-            color: white;
-
-        }
-
-
-
-        /* =====================================================
+        /* =========================
            RSVP
-        ===================================================== */
+        ========================= */
+
+        .rsvp {
+            background: #fff9fb;
+            text-align: center;
+        }
+
+        .rsvp-text {
+            font-size: 16px;
+            color: #826373;
+            margin-bottom: 35px;
+        }
 
         .rsvp-buttons {
-
-            margin-top: 45px;
-
             display: flex;
 
             justify-content: center;
@@ -1197,353 +537,242 @@
             gap: 15px;
 
             flex-wrap: wrap;
-
         }
 
+        .rsvp-btn {
+            border: none;
 
-        .rsvp {
-
-            padding:
-                16px 28px;
+            padding: 15px 27px;
 
             border-radius: 100px;
 
-            cursor: pointer;
+            background: #ead0db;
+            color: #664353;
 
-            font-size: 14px;
+            font-family: inherit;
+
+            font-size: 13px;
+
+            cursor: pointer;
 
             transition:
                 all 0.3s ease;
-
         }
 
-
-        .rsvp-yes {
-
-            background:
-                #b56888;
-
-            color: white;
-
-            border: none;
-
-            box-shadow:
-                0 12px 30px
-                rgba(
-                    181,
-                    104,
-                    136,
-                    0.25
-                );
-
+        .rsvp-btn:hover {
+            transform: translateY(-3px);
+            background: #dfbdcb;
         }
 
+        .rsvp-message {
+            margin-top: 25px;
 
-        .rsvp-yes:hover {
+            min-height: 25px;
 
-            transform:
-                translateY(-4px);
+            font-size: 14px;
 
+            color: #9b5e79;
+
+            font-style: italic;
         }
 
-
-        .rsvp-maybe {
-
-            background: white;
-
-            color: #82546a;
-
-            border:
-                1px solid
-                #e3c6d2;
-
-        }
-
-
-        .rsvp-maybe:hover {
-
-            transform:
-                translateY(-4px);
-
-        }
-
-
-        #rsvp-message {
-
-            min-height: 40px;
-
-            margin-top: 30px;
-
-            font-family:
-                "Playfair Display",
-                serif;
-
-            font-size: 22px;
-
-            color: #a85f7e;
-
-        }
-
-
-
-        /* =====================================================
+        /* =========================
            FOOTER
-        ===================================================== */
+        ========================= */
 
         footer {
+            background: #ead3dd;
+
+            padding: 45px 20px;
 
             text-align: center;
 
-            padding:
-                55px 20px 75px;
-
-            background:
-                #ead3dd;
-
+            color: #795668;
         }
-
 
         .footer-title {
-
-            font-family:
-                "Playfair Display",
-                serif;
-
-            font-size: 25px;
-
-            color: #68495a;
-
+            font-size: 20px;
+            margin-bottom: 10px;
         }
-
 
         .footer-date {
-
-            margin-top: 12px;
-
             font-size: 11px;
-
             letter-spacing: 3px;
-
-            color: #936f7e;
-
+            margin-bottom: 15px;
         }
 
-
-
-        /* =====================================================
-           SCROLL REVEAL
-        ===================================================== */
-
-        .reveal {
-
-            opacity: 0;
-
-            transform:
-                translateY(35px);
-
-            transition:
-                opacity 1s ease,
-                transform 1s ease;
-
+        .footer-secret {
+            font-size: 12px;
+            font-style: italic;
         }
 
-
-        .reveal.visible {
-
-            opacity: 1;
-
-            transform:
-                translateY(0);
-
-        }
-
-
-
-        /* =====================================================
+        /* =========================
            CONFETTI
-        ===================================================== */
+        ========================= */
 
         .confetti {
-
             position: fixed;
 
-            top: -20px;
-
             width: 8px;
+            height: 12px;
 
-            height: 14px;
+            top: -20px;
 
             z-index: 10000;
 
             pointer-events: none;
 
             animation:
-                confettiFall
-                linear
-                forwards;
+                confettiFall 3s linear forwards;
+        }
+
+        /* =========================
+           ANIMATIONS
+        ========================= */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
 
         }
 
+        @keyframes float {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+        }
 
         @keyframes confettiFall {
 
-            to {
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
 
+                opacity: 1;
+            }
+
+            100% {
                 transform:
                     translateY(110vh)
                     rotate(720deg);
 
+                opacity: 0;
             }
 
         }
 
-
-
-        /* =====================================================
+        /* =========================
            MOBILE
-        ===================================================== */
+        ========================= */
 
         @media (max-width: 700px) {
 
-
-            .opening-title {
-
-                font-size: 43px;
-
+            section {
+                padding: 70px 18px;
             }
-
-
-            .opening-date {
-
-                font-size: 16px;
-
-                letter-spacing: 5px;
-
-            }
-
-
-            .opening-small {
-
-                font-size: 9px;
-
-                letter-spacing: 3px;
-
-            }
-
 
             .details-grid {
-
-                grid-template-columns:
-                    1fr;
-
+                grid-template-columns: 1fr;
             }
-
 
             .detail {
-
-                padding:
-                    30px 20px;
-
+                padding: 28px 18px;
             }
 
-
-            .story-card {
-
-                padding:
-                    42px 22px;
-
+            .hero h1 {
+                font-size: 58px;
             }
 
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .story-text {
+                font-size: 15px;
+            }
+
+            .secret-text {
+                font-size: 15px;
+            }
+
+            .opening-title {
+                font-size: 38px;
+            }
+
+            .opening-date {
+                font-size: 11px;
+                letter-spacing: 3px;
+            }
 
             .rsvp-buttons {
-
-                flex-direction:
-                    column;
-
+                flex-direction: column;
+                align-items: center;
             }
 
-
-            .rsvp {
-
-                width: 100%;
-
-            }
-
-
-            .hero-date {
-
-                letter-spacing: 5px;
-
+            .rsvp-btn {
+                width: min(100%, 300px);
             }
 
         }
 
     </style>
-
 </head>
-
 
 
 <body>
 
 
-    <!-- =====================================================
-         CINEMATIC OPENING
-    ====================================================== -->
+    <!-- =========================
+         OPENING SCREEN
+    ========================= -->
 
-    <div
-        class="opening"
-        id="opening"
-    >
+    <div class="opening" id="opening">
 
+        <div class="curtain-left"></div>
 
-        <div
-            class="opening-panel opening-left"
-        ></div>
-
-
-        <div
-            class="opening-panel opening-right"
-        ></div>
+        <div class="curtain-right"></div>
 
 
         <div class="opening-content">
 
-
             <div class="opening-small">
-
-                You are invited to something special
-
+                You are invited
             </div>
 
 
             <div class="opening-title">
-
-                A little secret<br>
-
-                <em>is waiting...</em>
-
+                A little secret
+                <br>
+                is waiting...
             </div>
 
 
             <div class="opening-date">
-
                 26 · 09 · 2026
-
             </div>
 
 
             <button
-                class="enter-button"
+                class="enter-btn"
                 onclick="enterInvitation()"
             >
-
-                Tap to enter
-
-                <span>→</span>
-
+                TAP TO ENTER
             </button>
-
 
         </div>
 
@@ -1551,761 +780,582 @@
 
 
 
-    <!-- =====================================================
-         MAIN INVITATION
-    ====================================================== -->
+    <!-- =========================
+         HERO
+    ========================= -->
 
-    <main id="main">
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="chapter">
+                CHAPTER ONE
+            </div>
 
 
-        <!-- HERO -->
+            <h1>
 
-        <section class="hero">
+                One
+                <br>
+                Whole
+                <br>
+                Year
+
+            </h1>
+
+
+            <div class="divider"></div>
+
+
+            <div class="hero-subtitle">
+                One beautiful beginning.
+            </div>
+
+
+            <div class="hero-date">
+                26 SEPTEMBER 2026 · 6 PM ONWARDS
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         STORY
+    ========================= -->
+
+    <section class="story">
+
+        <div class="container">
+
+            <div class="eyebrow">
+                A tiny chapter
+            </div>
+
+
+            <h2 class="section-title">
+                A Year of Wonder
+            </h2>
+
+
+            <div class="divider"></div>
+
+
+            <p class="story-text">
+
+                Twelve months of tiny moments,
+                countless smiles and a whole lot of love.
+
+                <br><br>
+
+                Our little one is turning
+                <strong>ONE</strong>.
+
+                <br><br>
+
+                And we'd love for you to be there
+                as we celebrate the very first chapter
+                of this beautiful journey.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         EVENT DETAILS
+    ========================= -->
+
+    <section class="details">
+
+        <div class="container">
+
+            <div class="eyebrow">
+                Save the date
+            </div>
+
+
+            <h2 class="section-title">
+                The Celebration
+            </h2>
+
+
+            <div class="divider"></div>
+
+
+            <div class="details-grid">
+
+
+                <!-- DATE -->
+
+                <div class="detail">
+
+                    <div class="detail-icon">
+                        🗓️
+                    </div>
+
+
+                    <div class="detail-label">
+                        Date
+                    </div>
+
+
+                    <div class="detail-value">
+                        26 September 2026
+                    </div>
+
+
+                    <div class="detail-sub">
+                        Saturday
+                    </div>
+
+                </div>
+
+
+
+                <!-- TIME -->
+
+                <div class="detail">
+
+                    <div class="detail-icon">
+                        🕕
+                    </div>
+
+
+                    <div class="detail-label">
+                        Time
+                    </div>
+
+
+                    <div class="detail-value">
+                        6:00 PM onwards
+                    </div>
+
+
+                    <div class="detail-sub">
+                        Come celebrate with us
+                    </div>
+
+                </div>
+
+
+
+                <!-- VENUE -->
+
+                <div class="detail">
+
+                    <div class="detail-icon">
+                        📍
+                    </div>
+
+
+                    <div class="detail-label">
+                        Venue
+                    </div>
+
+
+                    <div class="detail-value">
+
+                        <a
+                            href="https://maps.app.goo.gl/cf38Bs4dkk3bo35bA?g_st=ic"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="venue-link"
+                        >
+                            Annoor Banquets & Lawns
+                        </a>
+
+                    </div>
+
+
+                    <div class="detail-sub">
+                        Raheja Club House · Ghatkopar West
+                    </div>
+
+
+                    <div class="venue-address">
+
+                        Lal Bahadur Shastri Marg
+                        <br>
+
+                        Next to Kalpataru Aura
+                        <br>
+
+                        Mumbai – 400086
+
+                    </div>
+
+
+                    <div class="venue-map">
+
+                        <a
+                            href="https://maps.app.goo.gl/cf38Bs4dkk3bo35bA?g_st=ic"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Open in Google Maps ↗
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SECRET NAME
+    ========================= -->
+
+    <section class="secret">
+
+        <div class="container">
+
+            <div class="eyebrow">
+                One little secret
+            </div>
+
+
+            <h2 class="section-title">
+
+                There's Something
+                <br>
+                You Don't Know Yet...
+
+            </h2>
+
+
+            <div class="divider"></div>
+
+
+            <p class="secret-text">
+
+                There's one very important detail
+                we are keeping a secret.
+
+                <br><br>
+
+                You'll have to join us at the celebration
+                to discover it.
+
+            </p>
+
+
+            <div class="secret-box">
+
+                Her name will be revealed
+                at the celebration. ✨
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         RSVP
+    ========================= -->
+
+    <section class="rsvp">
+
+        <div class="container">
+
+            <div class="eyebrow">
+                We hope to see you
+            </div>
+
+
+            <h2 class="section-title">
+                Will You Join Us?
+            </h2>
+
+
+            <div class="divider"></div>
+
+
+            <p class="rsvp-text">
+
+                Let us know if you'll be there
+                to celebrate this special day.
+
+            </p>
+
+
+            <div class="rsvp-buttons">
+
+
+                <button
+                    class="rsvp-btn"
+                    onclick="sayYes()"
+                >
+                    Yes, I'll be there 💕
+                </button>
+
+
+                <button
+                    class="rsvp-btn"
+                    onclick="sayMaybe()"
+                >
+                    I'll try my best ✨
+                </button>
+
+
+            </div>
+
 
             <div
-                class="hero-content reveal"
-            >
+                class="rsvp-message"
+                id="rsvpMessage"
+            ></div>
 
+        </div>
 
-                <div class="hero-eyebrow">
+    </section>
 
-                    CHAPTER ONE
 
-                </div>
 
-
-                <h1>
-
-                    One whole year.<br>
-
-                    <span>
-                        One beautiful beginning.
-                    </span>
-
-                </h1>
-
-
-                <p class="hero-text">
-
-                    365 days of tiny moments,
-                    endless smiles and memories
-                    that became a beautiful story.
-
-                </p>
-
-
-                <div class="hero-date">
-
-                    26 · 09 · 2026
-
-                </div>
-
-
-                <div class="scroll-hint">
-
-                    Scroll to discover ↓
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- STORY -->
-
-        <section>
-
-
-            <div class="container reveal">
-
-
-                <div class="eyebrow">
-
-                    Once upon a time...
-
-                </div>
-
-
-                <h2 class="section-title">
-
-                    The first<br>
-
-                    <span>
-                        chapter.
-                    </span>
-
-                </h2>
-
-
-                <p class="description">
-
-                    A little girl came into the world
-                    and made everything a little brighter.
-
-                </p>
-
-
-                <div class="story-card">
-
-                    <p>
-
-                        And now, somehow...
-
-                        <br><br>
-
-                        <strong>
-                            She's turning ONE.
-                        </strong>
-
-                        🎂
-
-                    </p>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- EVENT DETAILS -->
-
-        <section class="details">
-
-
-            <div class="container reveal">
-
-
-                <div class="eyebrow">
-
-                    Save the evening
-
-                </div>
-
-
-                <h2 class="section-title">
-
-                    Let's<br>
-
-                    <span>
-                        celebrate.
-                    </span>
-
-                </h2>
-
-
-                <p class="description">
-
-                    Because the very first birthday
-                    deserves something unforgettable.
-
-                </p>
-
-
-
-                <div class="details-grid">
-
-
-                    <!-- DATE -->
-
-                    <div class="detail">
-
-                        <div class="detail-icon">
-                            📅
-                        </div>
-
-                        <div class="detail-label">
-                            Date
-                        </div>
-
-                        <div class="detail-value">
-                            26 September
-                        </div>
-
-                        <div class="detail-sub">
-                            2026
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- TIME -->
-
-                    <div class="detail">
-
-                        <div class="detail-icon">
-                            🕕
-                        </div>
-
-                        <div class="detail-label">
-                            Time
-                        </div>
-
-                        <div class="detail-value">
-                            6:00 PM
-                        </div>
-
-                        <div class="detail-sub">
-                            onwards
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- VENUE -->
-
-                    <div class="detail">
-
-                        <div class="detail-icon">
-                            🔐
-                        </div>
-
-                        <div class="detail-label">
-                            Venue
-                        </div>
-
-                        <div class="detail-value">
-                            Secret
-                        </div>
-
-                        <div class="detail-sub">
-                            To be revealed
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- NAME REVEAL -->
-
-        <section class="secret-section">
-
-
-            <div
-                class="secret-container reveal"
-            >
-
-
-                <div class="lock-icon">
-
-                    🔐
-
-                </div>
-
-
-                <div class="eyebrow">
-
-                    There's another secret
-
-                </div>
-
-
-                <h2 class="section-title">
-
-                    Her name<br>
-
-                    <span>
-                        is waiting.
-                    </span>
-
-                </h2>
-
-
-
-                <div class="secret-box">
-
-
-                    <div class="secret-dots">
-
-                        • • • • •
-
-                    </div>
-
-
-                    <p class="secret-description">
-
-                        Some surprises are better
-                        when they're revealed in person.
-
-                        <br><br>
-
-                        Her name will be revealed
-
-                        <strong>
-                            at the celebration.
-                        </strong>
-
-                    </p>
-
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- RSVP -->
-
-        <section>
-
-
-            <div class="container reveal">
-
-
-                <div class="eyebrow">
-
-                    One tiny question
-
-                </div>
-
-
-                <h2 class="section-title">
-
-                    Will you<br>
-
-                    <span>
-                        join us?
-                    </span>
-
-                </h2>
-
-
-                <p class="description">
-
-                    We'd love to have you there
-                    for the beginning of her
-                    second chapter.
-
-                </p>
-
-
-
-                <div class="rsvp-buttons">
-
-
-                    <button
-                        class="rsvp rsvp-yes"
-                        onclick="sayYes()"
-                    >
-
-                        Yes, I'll be there 💕
-
-                    </button>
-
-
-                    <button
-                        class="rsvp rsvp-maybe"
-                        onclick="sayMaybe()"
-                    >
-
-                        I'll try my best ✨
-
-                    </button>
-
-
-                </div>
-
-
-                <div
-                    id="rsvp-message"
-                ></div>
-
-
-            </div>
-
-        </section>
-
-
-    </main>
-
-
-
-    <!-- FOOTER -->
+    <!-- =========================
+         FOOTER
+    ========================= -->
 
     <footer>
 
-
         <div class="footer-title">
-
-            Until then... keep the secret. 🤫
-
+            Chapter One
         </div>
 
 
         <div class="footer-date">
-
             26 · 09 · 2026 · 6 PM ONWARDS
-
         </div>
 
+
+        <div class="footer-secret">
+            A little secret is waiting...
+        </div>
 
     </footer>
 
 
 
-    <!-- =====================================================
+    <!-- =========================
          JAVASCRIPT
-    ====================================================== -->
+    ========================= -->
 
     <script>
 
 
-        /* =================================================
+        /* =========================
            ENTER INVITATION
-        ================================================== */
+        ========================= */
 
         function enterInvitation() {
 
-
             const opening =
-                document.getElementById(
-                    "opening"
-                );
+                document.getElementById("opening");
+
+            opening.classList.add("hide");
 
 
-            const main =
-                document.getElementById(
-                    "main"
-                );
+            setTimeout(() => {
 
+                document.body.style.overflowY = "auto";
 
-            opening.classList.add(
-                "opened"
-            );
-
-
-            setTimeout(
-                () => {
-
-                    main.classList.add(
-                        "visible"
-                    );
-
-                },
-                700
-            );
-
-
-            setTimeout(
-                () => {
-
-                    opening.classList.add(
-                        "hidden"
-                    );
-
-                    document.body.style.overflow =
-                        "auto";
-
-                },
-                1700
-            );
-
-
-            createParticles();
+            }, 1200);
 
         }
 
 
 
-        /* =================================================
-           SCROLL REVEAL
-        ================================================== */
+        /* =========================
+           GOOGLE SHEETS RSVP
+        ========================= */
 
-        const revealElements =
-            document.querySelectorAll(
-                ".reveal"
-            );
+        const scriptURL =
+            "https://script.google.com/macros/s/AKfycbwjHnGKCJMhuRjC4JTSRCQS4hTDYAYJvtg8qEqMTYzbl55oiGBfpxJdk7YvLOQqRHVY/exec";
 
 
-        const observer =
-            new IntersectionObserver(
 
-                entries => {
+        /* =========================
+           YES RSVP
+        ========================= */
 
-                    entries.forEach(
-                        entry => {
+        function sayYes() {
 
-                            if (
-                                entry.isIntersecting
-                            ) {
+            const message =
+                document.getElementById("rsvpMessage");
 
-                                entry.target.classList.add(
-                                    "visible"
-                                );
 
-                            }
+            message.innerHTML =
+                "Yay! We're so happy you'll be there. 💕";
 
-                        }
-                    );
 
-                },
+            sendRSVP("Yes");
 
+
+            createConfetti();
+
+        }
+
+
+
+        /* =========================
+           MAYBE RSVP
+        ========================= */
+
+        function sayMaybe() {
+
+            const message =
+                document.getElementById("rsvpMessage");
+
+
+            message.innerHTML =
+                "We hope you can make it! ✨";
+
+
+            sendRSVP("Maybe");
+
+
+            createConfetti();
+
+        }
+
+
+
+        /* =========================
+           SEND RSVP TO GOOGLE SHEETS
+        ========================= */
+
+        function sendRSVP(response) {
+
+            fetch(
+                scriptURL,
                 {
-                    threshold: 0.15
+
+                    method: "POST",
+
+                    mode: "no-cors",
+
+                    headers: {
+                        "Content-Type":
+                            "application/x-www-form-urlencoded"
+                    },
+
+                    body: new URLSearchParams({
+                        response: response
+                    })
+
                 }
+            )
+            .catch(error => {
 
-            );
-
-
-        revealElements.forEach(
-            element => {
-
-                observer.observe(
-                    element
+                console.log(
+                    "RSVP submission error:",
+                    error
                 );
 
-            }
-        );
-
-
-
-        /* =================================================
-           FLOATING PARTICLES
-        ================================================== */
-
-        function createParticles() {
-
-
-            if (
-                document.querySelector(
-                    ".particle"
-                )
-            ) {
-
-                return;
-
-            }
-
-
-            for (
-                let i = 0;
-                i < 28;
-                i++
-            ) {
-
-
-                const particle =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                particle.classList.add(
-                    "particle"
-                );
-
-
-                particle.style.left =
-                    Math.random() * 100
-                    + "vw";
-
-
-                particle.style.animationDuration =
-                    8 +
-                    Math.random() * 12
-                    + "s";
-
-
-                particle.style.animationDelay =
-                    Math.random() * 8
-                    + "s";
-
-
-                const size =
-                    3 +
-                    Math.random() * 4;
-
-
-                particle.style.width =
-                    size + "px";
-
-
-                particle.style.height =
-                    size + "px";
-
-
-                document.body.appendChild(
-                    particle
-                );
-
-            }
+            });
 
         }
 
 
 
-        /* =================================================
-           RSVP — GOOGLE SHEETS CONNECTION
-        ================================================= */
-
-    const RSVP_URL =
-        "https://script.google.com/macros/s/AKfycbwjHnGKCJMhuRjC4JTSRCQS4hTDYAYJvtg8qEqMTYzbl55oiGBfpxJdk7YvLOQqRHVY/exec";
-
-
-    function sendRSVP(response) {
-
-        const data = new URLSearchParams();
-
-        data.append("response", response);
-
-
-        fetch(RSVP_URL, {
-
-            method: "POST",
-
-            mode: "no-cors",
-
-            body: data
-
-        }).catch(error => {
-
-            console.log(
-                "RSVP connection error:",
-                error
-            );
-
-        });
-
-    }
-
-
-    /* YES */
-
-    function sayYes() {
-
-        document.getElementById(
-            "rsvp-message"
-        ).innerHTML =
-
-            "Yay! We can't wait to see you. 🥹💕";
-
-
-        sendRSVP("Yes");
-
-
-        createConfetti();
-
-    }
-
-
-    /* MAYBE */
-
-    function sayMaybe() {
-
-        document.getElementById(
-            "rsvp-message"
-        ).innerHTML =
-
-            "We'll keep a little cake waiting for you. 🎂✨";
-
-
-        sendRSVP("Maybe");
-
-    }
-
-
-
-        /* =================================================
+        /* =========================
            CONFETTI
-        ================================================== */
+        ========================= */
 
         function createConfetti() {
 
-
-            const colors = [
-
-                "#d786a8",
-
-                "#efbfd1",
-
-                "#d7c5ed",
-
-                "#f1d49b",
-
-                "#ffffff"
-
-            ];
+            const pieces = 35;
 
 
             for (
                 let i = 0;
-                i < 110;
+                i < pieces;
                 i++
             ) {
 
-
-                const piece =
-                    document.createElement(
-                        "div"
-                    );
+                const confetti =
+                    document.createElement("div");
 
 
-                piece.classList.add(
+                confetti.classList.add(
                     "confetti"
                 );
 
 
-                piece.style.left =
-                    Math.random() * 100
-                    + "vw";
+                confetti.style.left =
+                    Math.random() * 100 + "vw";
 
 
-                piece.style.background =
-                    colors[
+                confetti.style.animationDelay =
+                    Math.random() * 0.8 + "s";
+
+
+                confetti.style.transform =
+                    "rotate(" +
+                    Math.random() * 360 +
+                    "deg)";
+
+
+                const symbols = [
+                    "✦",
+                    "✧",
+                    "♡",
+                    "•"
+                ];
+
+
+                confetti.innerHTML =
+                    symbols[
                         Math.floor(
                             Math.random() *
-                            colors.length
+                            symbols.length
                         )
                     ];
 
 
-                piece.style.animationDuration =
-                    2 +
-                    Math.random() * 3
-                    + "s";
+                confetti.style.fontSize =
+                    (8 + Math.random() * 10) +
+                    "px";
 
 
-                piece.style.animationDelay =
-                    Math.random() * 0.8
-                    + "s";
-
-
-                piece.style.transform =
-                    `rotate(
-                        ${Math.random() * 360}deg
-                    )`;
+                confetti.style.color =
+                    [
+                        "#c77d9b",
+                        "#dca9bc",
+                        "#a86c88",
+                        "#f0c9d7",
+                        "#9d7ca8"
+                    ][
+                        Math.floor(
+                            Math.random() * 5
+                        )
+                    ];
 
 
                 document.body.appendChild(
-                    piece
+                    confetti
                 );
 
 
                 setTimeout(
                     () => {
-
-                        piece.remove();
-
+                        confetti.remove();
                     },
-                    5500
+                    3500
                 );
 
             }
@@ -2314,7 +1364,5 @@
 
     </script>
 
-
 </body>
-
 </html>
